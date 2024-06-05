@@ -1,0 +1,86 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+    <!-- Bootstrap CSS -->
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: rgb(209, 137, 137);
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .expense-form {
+            margin-bottom: 20px;
+        }
+        .expense-form input, .expense-form button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .expense-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .expense-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        #page-footer {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main heading of the page -->
+    <h1>Expense Tracker</h1>
+    <div class="container">
+        <div class="expense-form">
+            <input type="text" id="expenseName" placeholder="Expense Name">
+            <input type="number" id="expenseAmount" placeholder="Expense Amount">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+        <!-- Unordered list to display the added expenses -->
+        <ul id="expenseList" class="expense-list"></ul>
+    </div>
+    <script>
+        // Function to add a new expense to the list
+        function addExpense() {
+            const name = document.getElementById('expenseName').value;
+            const amount = document.getElementById('expenseAmount').value;
+            // Check if both fields are filled
+            if (name && amount) {
+                const expenseList = document.getElementById('expenseList');
+                // Create a new list item and add the expense name and amount to it
+                const expenseItem = document.createElement('li');
+                expenseItem.textContent = `${name}: $${amount}`;
+                expenseList.appendChild(expenseItem);
+
+                document.getElementById('expenseName').value = '';
+                document.getElementById('expenseAmount').value = '';
+            } else {
+                // Alert the user if any field is empty
+                alert('Please enter both expense name and amount.');
+            }
+        }
+    </script>
+    <footer id="page-footer">
+        <p>Copyright &copy; 2024</p>
+    </footer>
+</body>
+</html>
